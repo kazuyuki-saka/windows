@@ -1,12 +1,23 @@
+version: "3"
 services:
   windows:
     image: dockurr/windows
     container_name: windows
     environment:
+      RAM_SIZE: "12G"
+      CPU_CORES: "4"
+      DISK_SIZE: "100G"
       VERSION: "11"
+      BOOT_MODE: "windows_plain"
+      USERNAME: "genies"
+      PASSWORD: "password"
+      LANGUAGE: ""
     devices:
       - /dev/kvm
       - /dev/net/tun
+    volumes:
+      - ./storage/win:/storage
+      - ./storage/data:/data
     cap_add:
       - NET_ADMIN
     ports:
